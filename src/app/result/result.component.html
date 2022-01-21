@@ -2,7 +2,7 @@
 
 <mat-toolbar style="z-index: 1000;" color="primary">
     <mat-toolbar-row>
-      <p style="color:white; font-size:25px;">House Pricing Predictor</p>
+      <a routerLink="/homescreen"><p style="color:white; font-size:25px;">House Pricing Predictor</p></a>
       <p style="font-size: 15px; margin-left: 60px;">By Tim de Booij     studentnumber: 2089436</p>
       <p style="margin-left:200px; font-weight: bold;" class="white-text">Your data will not be saved nor used for other purposes than making this prediction.</p>
     </mat-toolbar-row>
@@ -11,18 +11,20 @@
 
   <mat-card style="margin-top: 100px; margin-bottom: 10px; background-color:rgba(45, 54, 71, 0.8)">
     <p class="white-text" style="font-size: 40px;">The prediction</p>
-    <button mat-raised-button style=" width:10%; margin-left: 45%; margin-right: 45%; background-color: darkblue; color:white" (click)="predict()">Get prediction</button>
     
 <div *ngIf="predicted()">
-    <p class="white-text" style="font-size: 20px;">The predicted price for the house is: {{config.prediction}}€</p>
     <p class="white-text" >Based on the data we gathered,</p>
-    <p *ngIf="compare(); else elseBlock" class="white-text">We advise you to bid higher than your original offer: {{bid}}€, like this you will have a better chance at succes. Keep in mind that the 
-        model has an offset of about 10000 euros in the price range of your dreamhouse.
+    <p class="white-text" style="font-size: 20px;">The predicted price for the house is: {{config.prediction}}€</p>
+    <p *ngIf="compare(); else elseBlock" class="white-text">We advise you to bid higher than your original offer: {{bid}}€, like this you will have a better chance at succes.
     </p>
     <ng-template #elseBlock>
-        <p class="white-text">We advise you to bid lower than your original offer: {{bid}}€ , otherwise you will pay to much. Keep in mind that the 
-            model has an offset of about 10000 euros in the price range of your dreamhouse.</p>
+        <p class="white-text">We advise you to bid lower than your original offer: {{bid}}€ , otherwise you will pay to much.</p>
           </ng-template>
+      <p class="white-text">
+        Keep in mind that the 
+            model has an offset of about {{config.accuracy}} euros in the price range of your dreamhouse, and the current data only contains information from 2006 till 2010. Unfortunately
+          the market has changed a lot. We will try to update the data soon!
+      </p>
 </div>
 
 

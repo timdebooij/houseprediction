@@ -17,11 +17,11 @@ import { catchError, retry } from 'rxjs/operators';
 @Injectable()
   export class ResultComponent {
     quality;
-    aboveLivArea;
+    aboveLivArea: number;
     garageSpace;
-    garageArea;
-    basementArea;
-    firstFloorArea;
+    garageArea: number;
+    basementArea: number;
+    firstFloorArea: number;
     buildingYear;
     bathrooms;
     bid;
@@ -33,14 +33,15 @@ import { catchError, retry } from 'rxjs/operators';
       });
     constructor(private _Activatedroute:ActivatedRoute, private http: HttpClient){
       this.quality = this._Activatedroute.snapshot.paramMap.get("quality");
-      this.aboveLivArea = this._Activatedroute.snapshot.paramMap.get("livar");
+      this.aboveLivArea = +this._Activatedroute.snapshot.paramMap.get("livar")!;
       this.garageSpace = this._Activatedroute.snapshot.paramMap.get("garsp");
-      this.garageArea = this._Activatedroute.snapshot.paramMap.get("garar");
-      this.basementArea = this._Activatedroute.snapshot.paramMap.get("base");
-      this.firstFloorArea = this._Activatedroute.snapshot.paramMap.get("firstfl");
+      this.garageArea = +this._Activatedroute.snapshot.paramMap.get("garar")!;
+      this.basementArea = +this._Activatedroute.snapshot.paramMap.get("base")!;
+      this.firstFloorArea = +this._Activatedroute.snapshot.paramMap.get("firstfl")!;
       this.buildingYear = this._Activatedroute.snapshot.paramMap.get("build");
       this.bathrooms = this._Activatedroute.snapshot.paramMap.get("bath");
       this.bid = this._Activatedroute.snapshot.paramMap.get("bid");
+      this.predict()
     }
 
     predict(){
@@ -55,8 +56,8 @@ import { catchError, retry } from 'rxjs/operators';
 
     getConfig() {
       // now returns an Observable of Config
-      this.path = "https://api-hcaid.herokuapp.com/predictions/" + this.quality + "/" + this.aboveLivArea + "/" + this.garageSpace + "/" + this.garageArea +
-      "/" + this.basementArea + "/" + this.firstFloorArea + "/" + this.buildingYear + "/" + this.bathrooms;
+      this.path = "https://api-hcaid.herokuapp.com/predictions/" + this.quality + "/" + this.aboveLivArea * 10.764262648009 + "/" + this.garageSpace + "/" + this.garageArea * 10.764262648009 +
+      "/" + this.basementArea * 10.764262648009 + "/" + this.firstFloorArea * 10.764262648009 + "/" + this.buildingYear + "/" + this.bathrooms;
       return this.http.get<Config>(this.path);
     }
 
@@ -71,6 +72,8 @@ showConfig() {
         return false;
       }
       else{
+        this.config.accuracy = Math.round(this.config.accuracy);
+        this.config.prediction = Math.round(this.config.prediction);
         return true;
       }
     }
@@ -87,5 +90,6 @@ showConfig() {
   }
 
 export class Config {
+  accuracy: number = 0;
   prediction: number = 0;
 }
