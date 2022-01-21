@@ -1,0 +1,29 @@
+<img style="position: fixed; top:0; left:0; min-width: 50%; min-height: 100%; max-width: 100%;" src='../../assets/images/pictureHouse3.jpg'>
+<mat-toolbar style="z-index: 1000;" color="primary">
+  <mat-toolbar-row>
+    <p style="color:white; font-size:25px;">House Pricing Predictor</p>
+    <p style="font-size: 15px; margin-left: 60px;">By Tim de Booij     studentnumber: 2089436</p>
+    <p style="margin-left:200px; font-weight: bold;" class="white-text">Your data will not be saved nor used for other purposes than making this prediction.</p>
+  </mat-toolbar-row>
+</mat-toolbar>
+
+<div style="position: fixed; margin-top: 100px; padding: 0px; border: 0px; min-height: 90%; max-width:30%" color="grey" opacity=0.2>
+  <mat-card style="min-height: 100%; margin-top: 35px; background-color:rgba(45, 54, 71, 0.8)">
+    <mat-card-title class="white-text-title">Are you in the market for a house?</mat-card-title>
+    <p font-family:Open-Sans-Regular style="color:white;">In the Netherlands it has become nearly impossible to buy a house at a reasonable price. The market is overflowing with 
+    landlords that want to rent houses for a lot of money. Mostly, starting families and first-time buyers are victimized by this, but even the average 
+    person that wants to enter the market does not realize what they are up against. Not knowing what to bid is dangerous, since it can lead 
+    to long waiting periods before getting your dreamhouse, or pay too much in an attempt to overcompensate</p>
+    <p font-family:Open-Sans-Regular style="color:white;">The goal of this website is to protect you from these dangers and give an insight in the current prices of houses.
+    We use an Artificial Intelligence model to predict the sale prices with just a few of the characteristics of the house. At the moment only a specific city is loaded
+    in the model: Ames in Iowa, USA. In the ideal situation more data will be gathered to get multiple cities, or even complete countries in the model. After analysing the housing 
+    market in Ames, we will start gathering data for the big cities in the Netherlands.</p>
+
+    <p style="color:white;"> If you are interested in buying a house in a city that is close to 66000 inhabitants (like Ames) and thinking about placing a bid on a house,
+    click the button below to see if your bid will take you to a successful outcome. </p>
+    <nav>
+      <a routerLink="/prediction"><button mat-raised-button style="margin-left: 35%; margin-right: 35%; width: 30%;  background-color: darkblue; color:white; padding:10px;" (click)="toPredictionPage()">Make prediction</button></a>
+    </nav>
+    
+  </mat-card>
+</div>

@@ -1,0 +1,106 @@
+<img style="position: fixed; top:0; left:0; margin-bottom: 10px; min-width: 100%; min-height: 100%; max-width: 100%;" src='../../assets/images/sky.jpg'>
+
+    <mat-toolbar style="z-index: 1000;" color="primary">
+      <mat-toolbar-row>
+        <p style="color:white; font-size:25px;">House Pricing Predictor</p>
+        <p style="font-size: 15px; margin-left: 60px;">By Tim de Booij     studentnumber: 2089436</p>
+        <p style="margin-left:200px; font-weight: bold;" class="white-text">Your data will not be saved nor used for other purposes than making this prediction.</p>
+      </mat-toolbar-row>
+    </mat-toolbar>
+
+<div style="margin-top: 30px;">
+    <mat-card style="margin-top: 100px; margin-bottom: 10px; background-color:rgba(45, 54, 71, 0.8)">
+        <p class="white-text" style="font-size: 40px;">First step towards your prediction</p>
+    <p class="white-text">The model needs a few key characteristics of the house to make a good prediction of the sale price. With each characteristic, an explanation will
+        be given to help you better describe the property. 
+    </p>
+    <p class="white-text" style="font-weight: bold;">
+        IMPORTANT: INPUT ONLY NUMBER WITHOUT DECIMALS.
+    </p>
+    </mat-card>
+    
+    <div style="display: flex;">
+        <mat-card style=" flex: 1 1 auto; max-width: 45%; max-height: 50%; background-color:rgba(45, 54, 71, 0.8)">
+            <mat-card-title class="white-text-title">1. Overall quality</mat-card-title>
+            <div style="display: flex; ">
+                <div style="flex: 1 1 auto; align-content: center;">
+                    <p class="white-text" style="margin-right: 10px; align-content: center;">This section measures the quality of the materials used in the house,
+                        and how polished the finished product is. Think about the glass, tiles and reinforcement. How well are they integrated and how long could the durability of these items be.
+                        Choose a number between 1 and 10, where the lower numbers (below 4) mean that there is need for a lot of renovation projects, and the higher number (above 7) mean 
+                        that the property is of a high-class standard.
+                    </p>
+                    <mat-form-field style=" border-top: 250px; align-content: center;">
+                        <mat-label class="white-text">Rating: </mat-label>
+                        <input type="number" [(ngModel)]="quality">
+                        <p style="color:red" *ngIf="validateQuality()">Please enter a number from 1 to 10</p>
+                    </mat-form-field>
+                </div>
+                
+                <img style="flex: 1 1 auto; float: right; max-width: 40%; " src='../../assets/images/overallquality.jpg'>
+            </div> 
+        </mat-card>
+
+        <mat-card style="flex: 1 1 auto; margin-left: 10px; max-width: 45%; max-height: 50%; background-color:rgba(45, 54, 71, 0.8)">
+            <mat-card-title class="white-text-title">2. Above ground living area</mat-card-title>
+            <div style="display: flex; ">
+                <div style="flex: 1 1 auto; align-content: center;">
+                    <p class="white-text" style="margin-right: 10px; align-content: center;">Here the above ground living area needs to be
+                        measured. This is an important attribute for all houses. When you are planning to start a family, or already have one,
+                        living space is a big necessity. The input number has to be in square meters.
+                    </p>
+                    <mat-form-field style=" border-top: 250px; align-content: center;">
+                        <mat-label class="white-text">Area: </mat-label>
+                        <input type="number" [(ngModel)]="aboveArea">
+                        <mat-label class="white-text">in square meters </mat-label>
+                        <p style="color:red" *ngIf="validateAboveGroundLiving()">Please enter a whole number above 0</p>
+                    </mat-form-field>
+            </div>
+            <img style="flex: 1 1 auto; float: right; max-width: 50%; " src='../../assets/images/abovegroundarea.png'>
+        </div>
+        </mat-card>
+        
+    </div>
+    <div style="display: flex;">
+        <mat-card style=" flex: 1 1 auto; max-width: 45%; max-height: 50%; margin-top: 10px; margin-right: 10px; background-color:rgba(45, 54, 71, 0.8)">
+            <mat-card-title class="white-text-title">3. Garage car space</mat-card-title>
+            <div style="display: flex; ">
+                <div style="flex: 1 1 auto; align-content: center;">
+                    <p class="white-text" style="margin-right: 10px; align-content: center;">This is an easy one to fill in. How many cars fit in the 
+                        garage of the house? Many families are growing towards having multiple cars, so the amount of cars that can fit in are having a big impact
+                        on the sales price.
+                    </p>
+                    <mat-form-field style=" border-top: 250px; align-content: center;">
+                        <mat-label class="white-text">Amount of car places: </mat-label>
+                        <input type="number" [(ngModel)]="garageSpace">
+                        <p style="color:red" *ngIf="validateGarageSpace()">Please enter a whole number above 0</p>
+                    </mat-form-field>
+            </div>
+            <img style="flex: 1 1 auto; float: right; max-width: 50%; " src='../../assets/images/garagecars2.jpg'>
+        </div>
+        </mat-card>
+
+        <mat-card style=" flex: 1 1 auto; max-width: 45%; max-height: 50%; margin-top: 10px; background-color:rgba(45, 54, 71, 0.8)">
+            <mat-card-title class="white-text-title">4. Garage area</mat-card-title>
+            <div style="display: flex; ">
+                <div style="flex: 1 1 auto; align-content: center;">
+                    <p class="white-text" style="margin-right: 10px; align-content: center;">Besides storing cars, the garage can have many different usages. 
+                        Storage, a place to repair things, or even play games like darts need quite some space. Please fill in the total area of the garage in square meter.
+                    </p>
+                    <mat-form-field style=" border-top: 250px; align-content: center;">
+                        <mat-label class="white-text">Area: </mat-label>
+                        <input type="number" [(ngModel)]="garageArea">
+                        <mat-label class="white-text"> in square meters </mat-label>
+                        <p style="color:red" *ngIf="validateGarageArea()">Please enter a whole number above 0</p>
+                    </mat-form-field>
+            </div>
+            <img style="flex: 1 1 auto; float: right; max-width: 50%; " src='../../assets/images/garagearea.jpg'>
+        </div>
+        </mat-card>
+    </div>
+    
+    <mat-card style="margin-top: 10px; margin-bottom: 10px; background-color:rgba(45, 54, 71, 0.8)">
+        <p class="white-text" style="font-size: 40px;">To the next steps</p>
+        <a *ngIf="allValid()" [routerLink]="['/predictiontwo', quality, aboveArea, garageSpace, garageArea]"><button mat-raised-button style="margin-right: 45%; margin-left: 45%; width: 10%; color:white; background-color: darkblue;" >Advance</button></a>
+    </mat-card>
+</div>
+

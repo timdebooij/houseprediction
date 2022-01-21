@@ -1,0 +1,109 @@
+<img style="position: fixed; top:0; left:0; min-width: 100%; min-height: 100%; max-width: 100%;" src='../../assets/images/sky.jpg'>
+
+<mat-toolbar style="z-index: 1000;" color="primary">
+    <mat-toolbar-row>
+      <p style="color:white; font-size:25px;">House Pricing Predictor</p>
+      <p style="font-size: 15px; margin-left: 60px;">By Tim de Booij     studentnumber: 2089436</p>
+      <p style="margin-left:200px; font-weight: bold;" class="white-text">Your data will not be saved nor used for other purposes than making this prediction.</p>
+    </mat-toolbar-row>
+  </mat-toolbar>
+<div >
+    <mat-card style="margin-top: 100px; margin-bottom: 10px; background-color:rgba(45, 54, 71, 0.8)">
+        <p class="white-text" style="font-size: 40px;">Second step towards your prediction</p>
+    <p class="white-text">The first characteristics are in the model, good job! We only need four more details about your house to make a prediction.
+    </p>
+    </mat-card>
+    
+    <div style="display: flex;">
+        <mat-card style=" flex: 1 1 auto; max-width: 45%; max-height: 50%; background-color:rgba(45, 54, 71, 0.8)">
+            <mat-card-title class="white-text-title">5. Area of the basement</mat-card-title>
+            <div style="display: flex; ">
+                <div style="flex: 1 1 auto; align-content: center;">
+                    <p class="white-text" style="margin-right: 10px; align-content: center;">We found that even the basement can have a big impact
+                        on the price of a house. You only have to put in the total area of the basement in square meters.
+                    </p>
+                    <mat-form-field style=" border-top: 250px; align-content: center;">
+                        <mat-label class="white-text">Area: </mat-label>
+                        <input type="number" [(ngModel)]="basementArea">
+                        <mat-label class="white-text">in square meters </mat-label>
+                        <p style="color:red" *ngIf="validateBaseArea()">Please enter a whole positive number</p>
+                    </mat-form-field>
+                </div>
+                
+                <img style="flex: 1 1 auto; float: right; max-width: 40%; " src='../../assets/images/basement.jpg'>
+            </div> 
+        </mat-card>
+
+        <mat-card style="flex: 1 1 auto; margin-left: 10px; max-width: 45%; max-height: 50%; background-color:rgba(45, 54, 71, 0.8)">
+            <mat-card-title class="white-text-title">6. First floor area</mat-card-title>
+            <div style="display: flex; ">
+                <div style="flex: 1 1 auto; align-content: center;">
+                    <p class="white-text" style="margin-right: 10px; align-content: center;">This is the last of the area's we need. The first floor area 
+                        plays a small part in the price as well, therefore, it is good to take it into account. Please put in the total area of the first
+                        floor in square meters. With first floor, we mean the american style, as you can see in the picture.
+                    </p>
+                    <mat-form-field style=" border-top: 250px; align-content: center;">
+                        <mat-label class="white-text">Area: </mat-label>
+                        <input type="number" [(ngModel)]="firstFloorArea">
+                        <mat-label class="white-text">in square meters </mat-label>
+                        <p style="color:red" *ngIf="validateFirstFloor()">Please enter a whole number greater than 0</p>
+                    </mat-form-field>
+            </div>
+            <img style="flex: 1 1 auto; float: right; max-width: 50%; " src='../../assets/images/firstfloor2.jpg'>
+        </div>
+        </mat-card>
+        
+    </div>
+    <div style="display: flex;">
+        <mat-card style=" flex: 1 1 auto; max-width: 45%; max-height: 50%; margin-top: 10px; margin-right: 10px; background-color:rgba(45, 54, 71, 0.8)">
+            <mat-card-title class="white-text-title">7. Building year</mat-card-title>
+            <div style="display: flex; ">
+                <div style="flex: 1 1 auto; align-content: center;">
+                    <p class="white-text" style="margin-right: 10px; align-content: center;">The original date of construction says a lot about a house.
+                         Not only the state that the house will be in, but also the style play a big role. Please enter the construction date below.
+                    </p>
+                    <mat-form-field style=" border-top: 250px; align-content: center;">
+                        <mat-label class="white-text">Construction date: </mat-label>
+                        <input type="number" [(ngModel)]="buildingYear">
+                        <p style="color:red" *ngIf="validateBuildingYear()">Please enter a year between 1600 and 2021</p>
+                    </mat-form-field>
+            </div>
+            <img style="flex: 1 1 auto; float: right; max-width: 50%; " src='../../assets/images/constructiondate2.jpg'>
+        </div>
+        </mat-card>
+
+        <mat-card style=" flex: 1 1 auto; max-width: 45%; max-height: 50%; margin-top: 10px; background-color:rgba(45, 54, 71, 0.8)">
+            <mat-card-title class="white-text-title">8. Amount of bathrooms</mat-card-title>
+            <div style="display: flex; ">
+                <div style="flex: 1 1 auto; align-content: center;">
+                    <p class="white-text" style="margin-right: 10px; align-content: center;">The very last thing we need to know, is the amount of full bathrooms. 
+                        Note that in a full bathroom there is a shower present, or at least the option to install one.
+                    </p>
+                    <mat-form-field style=" border-top: 250px; align-content: center;">
+                        <mat-label class="white-text">Bathrooms: </mat-label>
+                        <input type="number" [(ngModel)]="bathrooms">
+                        <p style="color:red" *ngIf="validateBathrooms()">Please enter a whole number greater than 0</p>
+                    </mat-form-field>
+            </div>
+            <img style="flex: 1 1 auto; float: right; max-width: 50%; " src='../../assets/images/bathroom.jpg'>
+        </div>
+        </mat-card>
+    </div>
+    
+    <mat-card style="margin-top: 10px; margin-bottom: 10px; background-color:rgba(45, 54, 71, 0.8)">
+        <p class="white-text" style="font-size: 40px;">To the last step!</p>
+        <p class="white-text">We have all the information from the house that we need. The last thing would be the price you are considering to bid:
+        </p>
+        <mat-form-field style="margin-left: 40%;">
+            <mat-label class="white-text">Your bid: </mat-label>
+            <input type="number" [(ngModel)]="bid">
+            <mat-label class="white-text">in euros </mat-label>
+            <p style="margin-left: 40%; color:red" *ngIf="validateBid()">Please enter a number greater than 0</p>
+        </mat-form-field>
+        <div style="margin-top: 10px; margin-left: 45%; width: 10%; margin-right: 45%;">
+            <a *ngIf="validateAll()" [routerLink]="['/result', quality, aboveLivArea, garageSpace, garageArea, basementArea, firstFloorArea, buildingYear, bathrooms, bid]"><button mat-raised-button style="color:white; background-color: darkblue;">To prediction</button></a>
+        </div>
+         </mat-card>
+</div>
+
+
